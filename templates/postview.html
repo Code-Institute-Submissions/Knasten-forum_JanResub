@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% for comment in post.comments.all %}
+<div class="list-group">
+    <div class="d-flex w-100 justify-content-between">
+    <h5 class="mb-1">{{ comment.content }}</h5>
+    <small>{{ comment.created_on }}</small>
+    </div>
+    <p class="mb-1">{{ comment.author|striptags }}</p>
+    <button type="submit" class="btn"><small>{{ post.likes.count }}<i class="fas fa-heart"></i></small></button>
+</div>
+{% endfor %}
+{% endblock content %}

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Content -->
+<div class="container">
+    <div class="row align-items-start">
+        {% for game in game_list %}
+        <div class="col">
+            <div class="card mt-3" style="width: 18rem; height: 32rem;">
+                {% if "placeholder" in game.feat_img.url %}
+                <img src="..." class="card-img-top" alt="...">
+                {% else %}
+                <img src="{{ game.feat_img.url }}" class="card-img-top">
+                {% endif %}
+                <div class="card-body">
+                <h5 class="card-title">{{ game.name }}</h5>
+                <p class="card-text">{{ game.desc }}</p>
+                <a href="{% url 'postlist' game.name %}" class="stretched-link"></a>
+                </div>
+            </div>
+        </div>
+    {% if forloop.counter|divisibleby:3 %}
+    </div>
+    <div class="row align-items-start">
+    {% endif %}
+        {% endfor %}
+    </div>
+</div>
+<!-- Content /-->
+{% endblock content %}
