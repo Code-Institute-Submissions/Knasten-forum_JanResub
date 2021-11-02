@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
+<!-- Original Post -->
 <div class="list-group">
     <div class="container bg-dark text-white mt-4">
         <form action="{% url 'post_like' post.id %}" method="POST" class="d-flex w-100 justify-content-between">
@@ -9,11 +10,12 @@
             <small>Posted on: {{ post.created_on }}</small>
             <button type="submit" name="post_id" value="{{ post.id }}" class="btn text-white right"><small>{{ post.likes.count }} <i class="fas fa-heart"></i></small></button>
         </form>
-        <p class="mb-1">{{  post.content }}</p>
+        {{  post.content|safe }}
         <small>Posted by: {{ post.author }}</small>
+        <a href="{% url 'add_comment' post.id %}">Add comment</a>
     </div>
 </div>
-
+<!-- Comments Section -->
 <div class="list-group">
     {% for comment in post.comments.all %}
     <div class="container bg-dark text-white mt-4">
@@ -27,5 +29,9 @@
     </div>
     {% endfor %}
 </div>
+
+{% for game in game_list %}
+{{ game.name }}
+{% endfor %}
 
 {% endblock content %}

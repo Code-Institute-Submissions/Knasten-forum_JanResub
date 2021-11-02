@@ -39,4 +39,25 @@ class EditPost(forms.ModelForm):
 
 
 class CommentForm(forms.ModelForm):
-    pass
+    class Meta:
+        model = Comment
+        fields = ('author', 'content', 'post')
+
+        widgets = {
+            'author': forms.TextInput(attrs={
+                'class': 'form-control',
+                'value': '',
+                'id': 'author-id',
+                'type': 'hidden',
+
+            }),
+            'content': SummernoteWidget(attrs={
+                'class': 'form-control',
+                'placeholder': 'Enter your comment here!',
+            }),
+            'post': forms.TextInput(attrs={
+                'class': 'form-control',
+                'value': '',
+                'id': 'post-id',
+            })
+        }
