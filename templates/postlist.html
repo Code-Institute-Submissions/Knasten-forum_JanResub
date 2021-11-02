@@ -2,7 +2,7 @@
 {% block content %}
 
 
-
+<!-- Contains all the posts -->
 <div class="container">
   <div class="row align-items-start">
     {% for post in posts %}
@@ -12,7 +12,7 @@
                 <h5 class="card-title mt-2">{{ post.title }}</h5>
                 <hr>
                 <p class="card-text mt-3">{{ post.content }}</p>
-                <a href="{% url 'postview' post.pk %}" class="stretched-link"></a>
+                <a href="{% url 'postview' post.id %}" class="stretched-link"></a>
                 <p class="">Posted By: {{ post.author }}</p>
               </div>
           </div>

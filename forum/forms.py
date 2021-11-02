@@ -1,11 +1,37 @@
 from .models import Post, Game, Comment
 from django import forms
+from django_summernote.widgets import SummernoteWidget
 
+games = Game.objects.all().values_list('name', flat=True)
+game_list = [game for game in games]
 
 class AddPost(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ('title', 'content', 'game')
+        fields = ('title', 'content', 'game', 'author')
+
+        widgets = {
+            'title': forms.TextInput(attrs={
+                'class': 'form-control',
+                'style': 'max-width: 300px;',
+                'placeholder': 'Name'
+                }),
+            'content': SummernoteWidget(attrs={
+                'class': 'form-control',
+                'placeholder': 'Enter your post content here!',
+            }),
+            'game': forms.Select(choices=game_list, attrs={
+                'class': 'form-control mb-3',
+            }),
+            'author': forms.TextInput(attrs={
+                'class': 'form-control',
+                'value': '',
+                'id': 'author-id',
+                'type': 'hidden',
+
+            })
+            
+        }
 
 
 class EditPost(forms.ModelForm):

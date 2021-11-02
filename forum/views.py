@@ -3,8 +3,20 @@ from django.views.generic import View, CreateView, ListView, DetailView, UpdateV
 from django.http import HttpResponse
 from .forms import AddPost, EditPost, CommentForm
 from .models import Game, Post, Comment
+from django.urls import reverse_lazy, reverse
 
 # Create your views here.
+
+def LikeView(request, pk):
+    post = get_object_or_404(Post, id=request.POST.get('post_id'))
+    liked = False
+    if post.likes.filter(id=request.user.id).exists():
+        post.likes.remove(request.user)
+        liked = False
+    else:
+        post.likes.add(request.user)
+        liked = True
+    return HttpResponseRedirect(reverse('postview', args=[pk]))
 
 class GameList(ListView):
     model = Game

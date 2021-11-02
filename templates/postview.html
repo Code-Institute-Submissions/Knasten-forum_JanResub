@@ -3,11 +3,12 @@
 {% block content %}
 <div class="list-group">
     <div class="container bg-dark text-white mt-4">
-        <div class="d-flex w-100 justify-content-between">
+        <form action="{% url 'post_like' post.id %}" method="POST" class="d-flex w-100 justify-content-between">
+            {% csrf_token %}
             <h5 class="mb-1">{{ post.title }}</h5>
             <small>Posted on: {{ post.created_on }}</small>
-            <button type="submit" class="btn text-white right"><small>{{ post.likes.count }} <i class="fas fa-heart"></i></small></button>
-        </div>
+            <button type="submit" name="post_id" value="{{ post.id }}" class="btn text-white right"><small>{{ post.likes.count }} <i class="fas fa-heart"></i></small></button>
+        </form>
         <p class="mb-1">{{  post.content }}</p>
         <small>Posted by: {{ post.author }}</small>
     </div>
