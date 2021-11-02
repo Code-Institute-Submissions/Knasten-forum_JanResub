@@ -1,14 +1,30 @@
 {% extends "base.html" %}
 
 {% block content %}
-{% for comment in post.comments.all %}
 <div class="list-group">
-    <div class="d-flex w-100 justify-content-between">
-    <h5 class="mb-1">{{ comment.content }}</h5>
-    <small>{{ comment.created_on }}</small>
+    <div class="container bg-dark text-white mt-4">
+        <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">{{ post.title }}</h5>
+            <small>Posted on: {{ post.created_on }}</small>
+            <button type="submit" class="btn text-white right"><small>{{ post.likes.count }} <i class="fas fa-heart"></i></small></button>
+        </div>
+        <p class="mb-1">{{  post.content }}</p>
+        <small>Posted by: {{ post.author }}</small>
     </div>
-    <p class="mb-1">{{ comment.author|striptags }}</p>
-    <button type="submit" class="btn"><small>{{ post.likes.count }}<i class="fas fa-heart"></i></small></button>
 </div>
-{% endfor %}
+
+<div class="list-group">
+    {% for comment in post.comments.all %}
+    <div class="container bg-dark text-white mt-4">
+        <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">{{ comment.content }}</h5>
+            <small class="right">Commented on: {{ comment.created_on }}</small>
+            <button type="submit" class="btn text-white right"><small>{{ comment.likes.count }} <i class="fas fa-heart"></i></small></button>
+        </div>
+        <br>
+        <p class="mb-1 d-inline">Commented by: {{ comment.author|striptags }}</p>
+    </div>
+    {% endfor %}
+</div>
+
 {% endblock content %}
