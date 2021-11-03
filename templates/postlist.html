@@ -33,6 +33,7 @@
           {% csrf_token %}
           <button type="submit" name="post_id" value="{{ post.id }}" class="btn text-white"><small>{{ post.likes.count }} <i class="fas fa-heart"></i></small></button>
         </form>
+      {% endif %}
       <div class="d-flex justify-content-end">
         <small>Posted on: {{ post.created_on }}</small>
       </div>
