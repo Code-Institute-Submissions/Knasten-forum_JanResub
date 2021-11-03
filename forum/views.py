@@ -1,11 +1,10 @@
 from django.shortcuts import render, get_object_or_404
-from django.views.generic import View, CreateView, ListView, DetailView, UpdateView
+from django.views.generic import View, CreateView, ListView, UpdateView
 from django.http import HttpResponseRedirect
 from .forms import AddPost, EditPost, CommentForm
 from .models import Game, Post, Comment
 from django.urls import reverse_lazy, reverse
 
-# Create your views here.
 
 def LikeView(request, id):
     print(request, id)
@@ -18,6 +17,7 @@ def LikeView(request, id):
         post.likes.add(request.user)
         liked = True
     return HttpResponseRedirect(reverse('postview', args=[id]))
+
 
 class GameList(ListView):
     model = Game
@@ -56,12 +56,15 @@ class PostView(View):
             },
         )
 
+
 class Add_Post(CreateView):
     model = Post
     form_class = AddPost
     template_name = 'add-post.html'
+
     def get_success_url(self):
         return reverse('postview', kwargs={'id': self.object.id})
+
 
 class Add_Comment(CreateView):
     model = Comment
@@ -73,7 +76,6 @@ class Add_Comment(CreateView):
         return super().form_valid(form)
 
     success_url = reverse_lazy('home')
-
 
 
 class Edit_Post(UpdateView):

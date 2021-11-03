@@ -5,6 +5,7 @@ from django_summernote.widgets import SummernoteWidget
 games = Game.objects.all().values_list('name', flat=True)
 game_list = [game for game in games]
 
+
 class AddPost(forms.ModelForm):
     class Meta:
         model = Post
@@ -30,7 +31,7 @@ class AddPost(forms.ModelForm):
                 'type': 'hidden',
 
             })
-            
+          
         }
 
 

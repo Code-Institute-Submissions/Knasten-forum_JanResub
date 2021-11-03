@@ -1,7 +1,7 @@
-![picture of responsiveness](assets/images/responsive.jpg)
+![picture of responsiveness]()
 
 
-# [LINK FOR LIVE VIEW]()
+# [LINK FOR LIVE VIEW](https://forum-knasten.herokuapp.com/)
 
 # Content
 
@@ -85,9 +85,9 @@ After this I had to fake-initial migrate and rerun server to get it up running a
 
 Except from all the manual testing I also ran it through both lighthouse and GTmetrix, result shown below.
 
-![picture of lighthouse](assets/images/lighthouse.jpg)
+![picture of lighthouse](media/images/lighthouse.png)
 
-![picture of GTmetrix](assets/images/gtmetrix.jpg)
+![picture of GTmetrix](media/images/gtmetrix.png)
 
 ## Further Testing
 After deployment everything was tested manually again to make sure nothing broke in the transfer. Still got problems with add_comment at the time of writing this.
@@ -98,8 +98,11 @@ Both CSS and HTML has been run through validators. Results are shown below.
 # Validation
 
 ### LINKS TO VALIDATION IMAGES ###
-- [pep8 first picture](assets/images/pep8num1.jpg)
-- [pep8 second picture](assets/images/pep8num2.jpg)
+- [pep8 settings.py](media/images/settingspep8.png)
+- [pep8 forms.py](media/images/formpep8.png)
+- [pep8 models.py](media/images/modelpep8.png)
+- [pep8 views.py](media/images/viewspep8.png)
+- [pep8 urls.py](media/images/pathpep8.png)
 
 # Tech used
 
