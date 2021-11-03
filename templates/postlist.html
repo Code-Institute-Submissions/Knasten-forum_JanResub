@@ -20,6 +20,7 @@
         </a>
         <hr>
         {{ post.content|safe }}
+        
         <p>Posted By: {{ post.author }}</p>
       </div>
         <form action="{% url 'post_like' post.id %}" method="POST" class="d-flex w-100 justify-content-end">

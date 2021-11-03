@@ -22,7 +22,7 @@
             <a class="navbar-brand" href="{% url 'account_logout' %}">Logout</a>
           </div>
           <a class="navbar-brand" href="{% url 'add-post' %}">
-            <p class="mb-1 d-inline text-white btn btn-secondary">Welcome {{ user.username }}! Wanna post something? Click me!</p>
+            <p class="mb-1 d-none d-md-inline text-white btn btn-secondary">Welcome {{ user.username }}! Wanna post something? Click me!</p>
           </a>
           {% else %}
           <div>
