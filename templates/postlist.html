@@ -23,6 +23,12 @@
         
         <p>Posted By: {{ post.author }}</p>
       </div>
+      {% if liked %}
+        <form action="{% url 'post_like' post.id %}" method="POST" class="d-flex w-100 justify-content-end">
+          {% csrf_token %}
+          <button type="submit" name="post_id" value="{{ post.id }}" class="btn text-white"><small>{{ post.likes.count }} <i class="fas fa-heart red"></i></small></button>
+        </form>
+      {% else %}
         <form action="{% url 'post_like' post.id %}" method="POST" class="d-flex w-100 justify-content-end">
           {% csrf_token %}
           <button type="submit" name="post_id" value="{{ post.id }}" class="btn text-white"><small>{{ post.likes.count }} <i class="fas fa-heart"></i></small></button>
