@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
+<!-- Add post form -->
 <div class="d-flex justify-content-center">
     <div class="form-group">
         <form method="POST" enctype="multipart/form-data">
@@ -12,7 +13,7 @@
         </form>
     </div>
 </div>
-
+<!-- Script to populate hidden author field -->
 <script>
     var author_name = "{{ user.id }}";
     document.getElementById("author-id").value = author_name;
