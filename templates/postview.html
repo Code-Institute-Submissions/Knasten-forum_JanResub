@@ -2,38 +2,53 @@
 
 {% block content %}
 <!-- Original Post -->
-<div class="container bg-dark text-white mt-4">
-    <form action="{% url 'post_like' post.id %}" method="POST" class="d-flex w-100 justify-content-between">
-        {% csrf_token %}
-        <h5 class="mb-1">{{ post.title }}</h5>
-        <small>Posted on: {{ post.created_on }}</small>
-        <button type="submit" name="post_id" value="{{ post.id }}" class="btn text-white right"><small>{{ post.likes.count }} <i class="fas fa-heart"></i></small></button>
-    </form>
-    {{  post.content|safe }}
-    <small>Posted by: {{ post.author }}</small>
-    <a href="{% url 'add_comment' post.id %}">Add comment</a>
-</div>
-<!-- Comments Section -->
-{% if not post.comments.all %}
-<div class="container bg-dark text-white mt-4">
-    No Comments Yet...<a href='#'>
-        Please Add One</a>
-</div>
-{% else %}
-<div class="list-group">
-    {% for comment in post.comments.all %}
-    <div class="container bg-dark text-white mt-4">
-        <div class="d-flex w-100 justify-content-between">
-            {{ comment.content|safe }}
-            <small class="right">Commented on: {{ comment.created_on }}</small>
-            <button type="submit" class="btn text-white right"><small>{{ comment.likes.count }} <i class="fas fa-heart"></i></small></button>
+<div class="container">
+    <div class="card mb-2 bg-dark text-white">
+        <div class="card-body p-2 p-sm-3">
+            <a href="{% url 'postview' post.id %}">
+                <h5 class="card-title mt-2">{{ post.title }}</h5>
+            </a>
+            <hr>
+            {{ post.content|safe }}
+            <p>Posted By: {{ post.author }}</p>
         </div>
-        <br>
-        <p class="mb-1 d-inline">Commented by: {{ comment.author }}</p>
+        <form action="{% url 'post_like' post.id %}" method="POST" class="d-flex w-100 justify-content-end">
+            {% csrf_token %}
+            <button type="submit" name="post_id" value="{{ post.id }}"
+                class="btn text-white"><small>{{ post.likes.count }} <i class="fas fa-heart"></i></small></button>
+        </form>
+        <div class="d-flex justify-content-end">
+            <small>Posted on: {{ post.created_on }}</small>
+        </div>
+    </div>
+    <!-- Comments Section -->
+    {% if not post.comments.all %}
+    <div class="container bg-dark text-white mt-4">
+        No Comments Yet...<a href="{% url 'add_comment' post.id %}">
+            Please Add One</a>
+    </div>
+    {% else %}
+    {% for comment in post.comments.all %}
+    <div class="card mb-2 bg-dark text-white">
+        <div class="card-body p-2 p-sm-3">
+            {{ comment.content|safe }}
+            <p>Comment By: {{ comment.author }}</p>
+        </div>
+        <div class="d-flex justify-content-end">
+            <button class="btn text-white"><small>{{ comment.likes.count }} <i class="fas fa-heart"></i></small></button>
+        </div>
+        <div class="d-flex justify-content-end">
+            <small>Posted on: {{ post.created_on }}</small>
+        </div>
     </div>
     {% endfor %}
+    <div class="container bg-dark text-white mt-4">
+        <a class="stretched-link" href="{% url 'add_comment' post.id %}">
+            <p class="mb-1 d-inline text-white">Have anything to share? Feel free to click me.</p>
+        </a>
+    </div>
 </div>
 
-{% endif %}
+    {% endif %}
 
-{% endblock content %}
+    {% endblock content %}

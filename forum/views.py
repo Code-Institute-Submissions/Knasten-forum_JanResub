@@ -41,11 +41,6 @@ class PostList(View):
         )
 
 
-# class PostView(ListView):
-#     model = Post
-#     queryset = Post.objects.all()
-#     template_name = 'postview.html'
-
 class PostView(View):
 
     def get(self, request, id, *args, **kwargs):

@@ -5,26 +5,34 @@
 <!-- Contains all the posts -->
 <div class="container">
   <div class="row align-items-start">
-    {{ game_list }}
-    {% for post in posts %}
-      <div class="row">
-        <div class="card mb-2 bg-dark text-white">
-          <div class="card-body p-2 p-sm-3">
-                <h5 class="card-title mt-2">{{ post.title }}</h5>
-                <hr>
-                {{ post.content|safe }}
-                <a href="{% url 'postview' post.id %}" class="stretched-link"></a>
-                <p>Posted By: {{ post.author }}</p>
-              </div>
-              <div class="d-flex justify-content-end">
-                <small>Posted on: {{ post.created_on }}</small>
-              </div>
-            </div>
+    <div class="card mb-2 bg-dark text-white">
+      <div class="card-body p-2 p-sm-3">
+        <a class="stretched-link" href="{% url 'add-post' %}">
+          <p class="mb-1 d-inline text-white">Have anything to share? Feel free to click me.</p>
+        </a>
       </div>
-      {% endfor %}
+    </div>
+    {% for post in posts %}
+    <div class="card mb-2 bg-dark text-white">
+      <div class="card-body p-2 p-sm-3">
+        <a href="{% url 'postview' post.id %}">
+          <h5 class="card-title mt-2">{{ post.title }}</h5>
+        </a>
+        <hr>
+        {{ post.content|safe }}
+        <p>Posted By: {{ post.author }}</p>
+      </div>
+        <form action="{% url 'post_like' post.id %}" method="POST" class="d-flex w-100 justify-content-end">
+          {% csrf_token %}
+          <button type="submit" name="post_id" value="{{ post.id }}" class="btn text-white"><small>{{ post.likes.count }} <i class="fas fa-heart"></i></small></button>
+        </form>
+      <div class="d-flex justify-content-end">
+        <small>Posted on: {{ post.created_on }}</small>
+      </div>
+    </div>
+    {% endfor %}
   </div>
 </div>
 
 
 {% endblock content %}
-
