@@ -35,10 +35,6 @@ class AddPost(forms.ModelForm):
         }
 
 
-class EditPost(forms.ModelForm):
-    pass
-
-
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment

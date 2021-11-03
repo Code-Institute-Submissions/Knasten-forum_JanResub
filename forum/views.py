@@ -1,13 +1,12 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import View, CreateView, ListView, UpdateView
 from django.http import HttpResponseRedirect
-from .forms import AddPost, EditPost, CommentForm
+from .forms import AddPost, CommentForm
 from .models import Game, Post, Comment
 from django.urls import reverse_lazy, reverse
 
 
 def LikeView(request, id):
-    print(request, id)
     post = get_object_or_404(Post, id=request.POST.get('post_id'))
     liked = False
     if post.likes.filter(id=request.user.id).exists():
@@ -47,12 +46,18 @@ class PostView(View):
         queryset = Post.objects.all()
         post = get_object_or_404(queryset, id=id)
         comments = post.comments.all()
+        total_likes = post.likes.count()
+        liked = False
+        if post.likes.filter(id=self.request.user.id).exists():
+            liked = True
+            
         return render(
             request,
             "postview.html",
             {
                 'post': post,
                 'comments': comments,
+                'liked': liked,
             },
         )
 
@@ -72,13 +77,7 @@ class Add_Comment(CreateView):
     template_name = 'add-comment.html'
 
     def form_valid(self, form):
-        form.instance.post_id = self.kwargs['id']
+        form.instance.post = self.kwargs['id']
         return super().form_valid(form)
 
     success_url = reverse_lazy('home')
-
-
-class Edit_Post(UpdateView):
-    model = Post
-    form_class = EditPost
-    template_name = 'edit-post.html'
