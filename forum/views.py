@@ -77,7 +77,7 @@ class Add_Comment(CreateView):
     template_name = 'add-comment.html'
 
     def form_valid(self, form):
-        form.instance.post = self.kwargs['id']
+        form.instance.post_id = self.kwargs['id']
         return super().form_valid(form)
 
     success_url = reverse_lazy('home')
