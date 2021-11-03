@@ -6,4 +6,8 @@
 body {
     margin-top: 80px;
     margin-bottom: 80px;
+    background-color: whitesmoke;
+}
+.post-body {
+    background-color: slategrey;
 }

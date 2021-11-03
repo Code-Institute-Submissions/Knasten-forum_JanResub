@@ -19,15 +19,20 @@
           {% if user.is_authenticated %}
           <div>
             <a class="navbar-brand" href="{% url 'home' %}">Home</a>
-            <a class="navbar-brand" href="{#}">Logout</a>
-            <p class="mb-1 d-inline text-white">Welcome {{ user.username }}</p>
+            <a class="navbar-brand" href="{% url 'account_logout' %}">Logout</a>
           </div>
+          <a class="navbar-brand" href="{% url 'add-post' %}">
+            <p class="mb-1 d-inline text-white btn btn-secondary">Welcome {{ user.username }}! Wanna post something? Click me!</p>
+          </a>
           {% else %}
           <div>
-            <a class="navbar-brand" href="{#}">Home</a>
-            <a class="navbar-brand" href="{#}">Login</a>
-            <a class="navbar-brand" href="{#}">Register</a>
+            <a class="navbar-brand" href="{% url 'home' %}">Home</a>
+            <a class="navbar-brand" href="{% url 'account_login' %}">Login</a>
+            <a class="navbar-brand" href="{% url 'account_signup' %}">Register</a>
           </div>
+          <a class="navbar-brand" href="{% url 'account_signup' %}">
+            <p class="mb-1 d-inline text-white btn btn-secondary">Sign up to post!</p>
+          </a>
           {% endif %}
           <div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -43,7 +48,6 @@
               <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
               <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
-          </div>
         </div>
       </nav>
     <!-- Navbar /-->

@@ -7,21 +7,43 @@
   <div class="row align-items-start">
     {{ game_list }}
     {% for post in posts %}
-      <div class="col">
-          <div class="card mt-3" style="width: 18rem; height: 32rem;">
-              <div class="card-body">
+    {% if forloop.counter|divisibleby:2 %}
+      <div class="row">
+        <div class="card mb-2 bg-secondary text-white">
+          <div class="card-body p-2 p-sm-3">
                 <h5 class="card-title mt-2">{{ post.title }}</h5>
                 <hr>
-                <p class="card-text mt-3">{{ post.content }}</p>
+                {{ post.content|safe }}
                 <a href="{% url 'postview' post.id %}" class="stretched-link"></a>
-                <p class="">Posted By: {{ post.author }}</p>
+                <p>Posted By: {{ post.author }}</p>
               </div>
-          </div>
+              <div class="d-flex justify-content-end">
+                <small>Posted on: {{ post.created_on }}</small>
+              </div>
+            </div>
       </div>
-  {% if forloop.counter|divisibleby:3 %}
+      {% endif%}
+      {% endfor %}
   </div>
+</div>
+<div class="container">
   <div class="row align-items-start">
-  {% endif %}
+    {{ game_list }}
+    {% for post in posts %}
+    {% if forloop.counter|divisibleby:2 %}
+    {% else %}
+    <div class="row">
+      <div class="card mb-2 bg-secondary text-white">
+        <div class="card-body p-2 p-sm-3">
+              <h5 class="card-title mt-2">{{ post.title }}</h5>
+              <hr>
+              {{ post.content|safe }}
+              <a href="{% url 'postview' post.id %}" class="stretched-link"></a>
+              <p class="">Posted By: {{ post.author }}</p>
+            </div>
+          </div>
+    </div>
+      {% endif%}
       {% endfor %}
   </div>
 </div>
