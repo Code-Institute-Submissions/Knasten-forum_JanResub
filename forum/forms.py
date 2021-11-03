@@ -59,5 +59,6 @@ class CommentForm(forms.ModelForm):
                 'class': 'form-control',
                 'value': '',
                 'id': 'post-id',
+                'type': 'hidden',
             })
         }

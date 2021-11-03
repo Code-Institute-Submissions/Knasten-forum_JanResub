@@ -72,8 +72,6 @@ class Add_Comment(CreateView):
     model = Comment
     form_class = CommentForm
     template_name = 'add-comment.html'
-    def get_success_url(self):
-        return reverse('postview', kwargs={'id': self.object.id})
 
     def form_valid(self, form):
         form.instance.post_id = self.kwargs['id']

@@ -7,9 +7,8 @@
   <div class="row align-items-start">
     {{ game_list }}
     {% for post in posts %}
-    {% if forloop.counter|divisibleby:2 %}
       <div class="row">
-        <div class="card mb-2 bg-secondary text-white">
+        <div class="card mb-2 bg-dark text-white">
           <div class="card-body p-2 p-sm-3">
                 <h5 class="card-title mt-2">{{ post.title }}</h5>
                 <hr>
@@ -22,28 +21,6 @@
               </div>
             </div>
       </div>
-      {% endif%}
-      {% endfor %}
-  </div>
-</div>
-<div class="container">
-  <div class="row align-items-start">
-    {{ game_list }}
-    {% for post in posts %}
-    {% if forloop.counter|divisibleby:2 %}
-    {% else %}
-    <div class="row">
-      <div class="card mb-2 bg-secondary text-white">
-        <div class="card-body p-2 p-sm-3">
-              <h5 class="card-title mt-2">{{ post.title }}</h5>
-              <hr>
-              {{ post.content|safe }}
-              <a href="{% url 'postview' post.id %}" class="stretched-link"></a>
-              <p class="">Posted By: {{ post.author }}</p>
-            </div>
-          </div>
-    </div>
-      {% endif%}
       {% endfor %}
   </div>
 </div>

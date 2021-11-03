@@ -15,7 +15,7 @@ class Game(models.Model):
 
 
 class Post(models.Model):
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='post')
     title = models.CharField(max_length=300, unique=True)
     content = models.TextField()
     likes = models.ManyToManyField(User, related_name='forumpost_likes', blank=True)
@@ -38,6 +38,9 @@ class Comment(models.Model):
     content = models.TextField()
     likes = models.ManyToManyField(User, related_name='postcomment_likes', blank=True)
     created_on = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.author} Commented: {self.content}'
 
 
     class Meta:

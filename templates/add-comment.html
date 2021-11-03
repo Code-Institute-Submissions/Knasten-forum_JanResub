@@ -7,9 +7,6 @@
             {% csrf_token %}
             {{ form.as_table }}
             <button class="btn btn-secondary btn-lg">Comment</button>
-            {% for comment in comment.all %}
-            {{ comment.content }}
-            {% endfor %}
         </form>
     </div>
 </div>
@@ -18,7 +15,6 @@
     var author_name = "{{ user.id }}";
     document.getElementById("author-id").value = author_name;
     var post_id = "{{ post.id }}";
-    console.log(post_id)
     document.getElementById("post-id").value = post_id;
 </script>
 

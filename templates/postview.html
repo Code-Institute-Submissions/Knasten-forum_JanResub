@@ -2,36 +2,38 @@
 
 {% block content %}
 <!-- Original Post -->
-<div class="list-group">
-    <div class="container bg-dark text-white mt-4">
-        <form action="{% url 'post_like' post.id %}" method="POST" class="d-flex w-100 justify-content-between">
-            {% csrf_token %}
-            <h5 class="mb-1">{{ post.title }}</h5>
-            <small>Posted on: {{ post.created_on }}</small>
-            <button type="submit" name="post_id" value="{{ post.id }}" class="btn text-white right"><small>{{ post.likes.count }} <i class="fas fa-heart"></i></small></button>
-        </form>
-        {{  post.content|safe }}
-        <small>Posted by: {{ post.author }}</small>
-        <a href="{% url 'add_comment' post.id %}">Add comment</a>
-    </div>
+<div class="container bg-dark text-white mt-4">
+    <form action="{% url 'post_like' post.id %}" method="POST" class="d-flex w-100 justify-content-between">
+        {% csrf_token %}
+        <h5 class="mb-1">{{ post.title }}</h5>
+        <small>Posted on: {{ post.created_on }}</small>
+        <button type="submit" name="post_id" value="{{ post.id }}" class="btn text-white right"><small>{{ post.likes.count }} <i class="fas fa-heart"></i></small></button>
+    </form>
+    {{  post.content|safe }}
+    <small>Posted by: {{ post.author }}</small>
+    <a href="{% url 'add_comment' post.id %}">Add comment</a>
 </div>
 <!-- Comments Section -->
+{% if not post.comments.all %}
+<div class="container bg-dark text-white mt-4">
+    No Comments Yet...<a href='#'>
+        Please Add One</a>
+</div>
+{% else %}
 <div class="list-group">
     {% for comment in post.comments.all %}
     <div class="container bg-dark text-white mt-4">
         <div class="d-flex w-100 justify-content-between">
-            <h5 class="mb-1">{{ comment.content }}</h5>
+            {{ comment.content|safe }}
             <small class="right">Commented on: {{ comment.created_on }}</small>
             <button type="submit" class="btn text-white right"><small>{{ comment.likes.count }} <i class="fas fa-heart"></i></small></button>
         </div>
         <br>
-        <p class="mb-1 d-inline">Commented by: {{ comment.author|striptags }}</p>
+        <p class="mb-1 d-inline">Commented by: {{ comment.author }}</p>
     </div>
     {% endfor %}
 </div>
 
-{% for game in game_list %}
-{{ game.name }}
-{% endfor %}
+{% endif %}
 
 {% endblock content %}
