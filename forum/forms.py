@@ -23,6 +23,7 @@ class AddPost(forms.ModelForm):
             }),
             'game': forms.Select(choices=game_list, attrs={
                 'class': 'form-control mb-3',
+                'id': 'game-id',
             }),
             'author': forms.TextInput(attrs={
                 'class': 'form-control',

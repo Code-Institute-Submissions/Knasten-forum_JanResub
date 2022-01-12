@@ -35,7 +35,11 @@
     <div class="card mb-2 bg-dark text-white">
         <div class="card-body p-2 p-sm-3">
             {{ comment.content|safe }}
+            {% if comment.author_id == user.id %}
+            <p class="owned">Comment By: {{ comment.author }}</p>
+            {% else %}
             <p>Comment By: {{ comment.author }}</p>
+            {% endif %}
         </div>
         <div class="d-flex justify-content-end">
             <small>Commented on: {{ comment.created_on }}</small>

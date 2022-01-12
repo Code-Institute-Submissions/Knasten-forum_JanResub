@@ -8,7 +8,7 @@
     <div class="card mb-2 bg-dark text-white">
       <div class="card-body p-2 p-sm-3">
         {% if user.is_authenticated %}
-        <a class="stretched-link" href="{% url 'add-post' %}">
+        <a class="stretched-link" href="{% url 'add-post' game.name %}">
           <p class="mb-1 d-inline text-white">Have anything to share? Feel free to click me.</p>
         </a>
         {% else %}
@@ -27,7 +27,7 @@
         <hr>
         {{ post.content|safe }}
         {% if user.id == post.author.id %}
-        <p class="text-warning">Posted By: {{ post.author }}</p>
+        <p class="owned d-inline-block">Posted By: {{ post.author }}</p>
         {% else %}
         <p>Posted By: {{ post.author }}</p>
         {% endif %}

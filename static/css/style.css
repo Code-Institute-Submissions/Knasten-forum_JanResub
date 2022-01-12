@@ -14,3 +14,24 @@ body {
 .red {
     color: red;
 }
+
+.owned {
+    color: red;
+}
+
+.delete-form {
+    border: solid rgb(17, 17, 17) 3px;
+    padding: 18px;
+}
+
+.delete-form > input {
+    background-color: black;
+    color: white;
+    font-weight: 500;
+    padding: 3px;
+}
+
+.delete-form > input:hover {
+    background-color: white;
+    color: black;
+}
