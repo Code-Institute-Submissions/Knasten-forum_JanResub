@@ -36,6 +36,7 @@
         <small>Posted on: {{ post.created_on }}</small>
       </div>
     </div>
+    <a href="{% url 'delete_post' post.id %}">DELETE</a>
     {% endfor %}
   </div>
 </div>
