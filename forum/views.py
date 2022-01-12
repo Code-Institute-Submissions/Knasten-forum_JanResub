@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import View, CreateView, ListView, UpdateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 from .forms import AddPost, CommentForm
 from .models import Game, Post, Comment
@@ -62,7 +63,7 @@ class PostView(View):
         )
 
 
-class Add_Post(CreateView):
+class Add_Post(LoginRequiredMixin, CreateView):
     model = Post
     form_class = AddPost
     template_name = 'add-post.html'
@@ -80,4 +81,5 @@ class Add_Comment(CreateView):
         form.instance.post_id = self.kwargs['id']
         return super().form_valid(form)
 
-    success_url = reverse_lazy('home')
+    def get_success_url(self):
+        return reverse('postview', kwargs={'id': self.object.post_id})
