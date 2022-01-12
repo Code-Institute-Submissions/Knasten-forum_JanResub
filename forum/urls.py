@@ -11,4 +11,5 @@ urlpatterns = [
     path('<str:name>/', views.PostList.as_view(), name='postlist'),
     path('accounts/', include('allauth.urls')),
     path('article/<int:id>/add_comment', views.Add_Comment.as_view(), name='add_comment'),
+    path('article/<int:pk>/delete_comment', views.Delete_Comment.as_view(), name='delete_comment'),
 ]

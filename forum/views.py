@@ -90,3 +90,10 @@ class Delete_Post(LoginRequiredMixin, DeleteView):
     template_name = 'post_confirm_delete.html'
     def get_success_url(self):
         return reverse('postlist', kwargs={'name': self.object.game})
+
+
+class Delete_Comment(LoginRequiredMixin, DeleteView):
+    model = Comment
+    template_name = 'comment_confirm_delete.html'
+    def get_success_url(self):
+        return reverse('postview', kwargs={'id': self.object.post_id})

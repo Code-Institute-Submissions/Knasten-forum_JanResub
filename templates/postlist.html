@@ -26,7 +26,11 @@
         </a>
         <hr>
         {{ post.content|safe }}
+        {% if user.id == post.author.id %}
+        <p class="text-warning">Posted By: {{ post.author }}</p>
+        {% else %}
         <p>Posted By: {{ post.author }}</p>
+        {% endif %}
       </div>
         <form action="{% url 'post_like' post.id %}" method="POST" class="d-flex w-100 justify-content-end">
           {% csrf_token %}
@@ -36,7 +40,6 @@
         <small>Posted on: {{ post.created_on }}</small>
       </div>
     </div>
-    <a href="{% url 'delete_post' post.id %}">DELETE</a>
     {% endfor %}
   </div>
 </div>
