@@ -13,8 +13,105 @@
     <title>Document</title>
 </head>
 <body style="margin: 80px;">
+<!-- Navbar -->
+<nav class="navbar bg-dark">
+
+  <div class="nav-buttons d-none d-lg-block">
+    {% if user.is_authenticated %}
+      <button class="btn" type="button" href="{% url 'home' %}">Home</button>
+      <button class="btn" type="button" href="#">Profile</button>
+      <button class="btn" type="button" href="{% url 'account_logout' %}">Logout</button>
+    {% else %}
+      <button class="btn" type="button" href="{% url 'home' %}">Home</button>
+      <button class="btn" type="button" href="{% url 'account_login' %}">Login</button>
+      <button class="btn" type="button" href="{% url 'account_logout' %}">Logout</button>
+    {% endif %}
+  </div>
+
+  <div class="nav-filter d-none d-lg-block">
+      <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Dropdown button
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              {% for game in game_forums %}
+                  <a class="dropdown-item" href="{{ url 'postlist' game.name }}">{{ game.name }}</a>
+              {% endfor %}
+          </div>
+        </div>
+  </div>
+
+  <!-- Collapse button only visible on medium and smaller -->
+  <button class="navbar-toggler toggler-example text-white black-border d-lg-none" type="button"
+      data-toggle="collapse" data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1"
+      aria-expanded="false" aria-label="Toggle navigation"><span class="dark-blue-text"><i
+              class="fas fa-bars fa-1x"></i></span></button>
+
+  <!-- Collapsible content only visible on medium and smaller -->
+  <div class="collapse navbar-collapse d-lg-none" id="navbarSupportedContent1">
+
+      <!-- Links -->
+      <ul class="navbar-nav mr-auto">
+        {% if user.is_authenticated %}
+            <li class="nav-item active">
+              <a class="nav-link text-white" href="{% url 'home' %}">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" href="#">Profile</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="{% url 'account_logout' %}">Logout</a>
+          </li>
+        {% else %}
+          <li class="nav-item active">
+              <a class="nav-link text-white" href="{% url 'home' %}">Home</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link text-white" href="{% url 'account_login' %}">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="{% url 'account_signup' %}">Register</a>
+        </li>
+        {% endif %}
+              <!-- DropDown -->
+              <div class="dropdown">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                      data-toggle="dropdown" aria-expanded="false">
+                      Games
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      {% for game in game_forums %}
+                          <a class="dropdown-item" href=" url 'postlist' game.name ">{{ game.name }}</a>
+                      {% endfor %}
+                  </div>
+              </div>
+              <!-- DropDown /-->
+          </li>
+      </ul>
+      <!-- Links -->
+
+  </div>
+  <!-- Collapsible content /-->
+</nav>
+<!-- Navbar /-->
+<div class="main-wrapper">
+  <div class="inner-wrapper">
+      {% block content %}
+      {% endblock content %}
+  </div>
+</div>
+<footer>
+  <!-- Footer Content -->
+ <div class="navbar bg-dark text-white footer">
+     <div class="row">
+
+     </div>
+ </div>
+  <!-- Footer Content /-->
+</footer>
+<!-- ------------------------------------------------------------------------------------------------------- COPY/DELETE -->
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <!-- <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <div class="container-fluid">
           {% if user.is_authenticated %}
           <div class="ms-3">
@@ -42,14 +139,14 @@
             </ul>
           </div>
         </div>
-      </nav>
+      </nav> -->
     <!-- Navbar /-->
     <!-- Content -->
     {% block content %}
     {% endblock content %}
     <!-- Content /-->
     <!-- Footer -->
-    <footer class="footer fixed-bottom mt-auto py-3 bg-dark ">
+    <!-- <footer class="footer fixed-bottom mt-auto py-3 bg-dark ">
       <div class="d-flex justify-content-around">
           <small class="text-white">©2021 KNASTEN</small>
           <div>
@@ -57,7 +154,7 @@
             <a href="https://www.twitch.tv/knastengaming" target="_blank" rel="noopener"><i class="fab fa-twitch fa-2x"></i></a>
           </div>
         </div>
-    </footer>
+    </footer> -->
     <!-- Footer /-->
 </body>
 </html>

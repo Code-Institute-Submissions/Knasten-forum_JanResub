@@ -19,7 +19,7 @@
       </div>
     </div>
     {% for post in posts %}
-    <div class="card mb-2 bg-dark text-white">
+    <div class="card bg-dark text-white">
       <div class="card-body p-2 p-sm-3">
         <a href="{% url 'postview' post.id %}">
           <h5 class="card-title mt-2">{{ post.title }}</h5>
