@@ -12,30 +12,30 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <title>Document</title>
 </head>
-<body style="margin: 80px;">
+<body>
 <!-- Navbar -->
 <nav class="navbar bg-dark">
 
   <div class="nav-buttons d-none d-lg-block">
     {% if user.is_authenticated %}
-      <button class="btn" type="button" href="{% url 'home' %}">Home</button>
-      <button class="btn" type="button" href="#">Profile</button>
-      <button class="btn" type="button" href="{% url 'account_logout' %}">Logout</button>
+      <a class="btn" type="button" href="{% url 'home' %}">Home</a>
+      <a class="btn" type="button" href="#">Profile</a>
+      <a class="btn" type="button" href="{% url 'account_logout' %}">Logout</a>
     {% else %}
-      <button class="btn" type="button" href="{% url 'home' %}">Home</button>
-      <button class="btn" type="button" href="{% url 'account_login' %}">Login</button>
-      <button class="btn" type="button" href="{% url 'account_logout' %}">Logout</button>
+      <a class="btn" type="button" href="{% url 'home' %}">Home</a>
+      <a class="btn" type="button" href="{% url 'account_login' %}">Login</a>
+      <a class="btn" type="button" href="{% url 'account_signup' %}">Register</a>
     {% endif %}
   </div>
 
   <div class="nav-filter d-none d-lg-block">
       <div class="dropdown">
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Dropdown button
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Topics
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              {% for game in game_forums %}
-                  <a class="dropdown-item" href="{{ url 'postlist' game.name }}">{{ game.name }}</a>
+              {% for game in game_list %}
+                  <a class="dropdown-item" href="{% url 'postlist' game.name %}">{{ game.name }}</a>
               {% endfor %}
           </div>
         </div>
@@ -43,7 +43,7 @@
 
   <!-- Collapse button only visible on medium and smaller -->
   <button class="navbar-toggler toggler-example text-white black-border d-lg-none" type="button"
-      data-toggle="collapse" data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1"
+      data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1"
       aria-expanded="false" aria-label="Toggle navigation"><span class="dark-blue-text"><i
               class="fas fa-bars fa-1x"></i></span></button>
 
@@ -76,12 +76,12 @@
               <!-- DropDown -->
               <div class="dropdown">
                   <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                      data-toggle="dropdown" aria-expanded="false">
+                      data-bs-toggle="dropdown" aria-expanded="false">
                       Games
                   </button>
                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                      {% for game in game_forums %}
-                          <a class="dropdown-item" href=" url 'postlist' game.name ">{{ game.name }}</a>
+                      {% for game in games %}
+                          <a class="dropdown-item" href="{% url 'postlist' game.name %}">{{ game.name }}</a>
                       {% endfor %}
                   </div>
               </div>
@@ -142,8 +142,6 @@
       </nav> -->
     <!-- Navbar /-->
     <!-- Content -->
-    {% block content %}
-    {% endblock content %}
     <!-- Content /-->
     <!-- Footer -->
     <!-- <footer class="footer fixed-bottom mt-auto py-3 bg-dark ">

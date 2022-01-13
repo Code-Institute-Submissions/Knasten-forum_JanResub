@@ -35,7 +35,6 @@ class PostList(View):
             request,
             "postlist.html",
             {
-                'game': game,
                 'posts': posts,
             },
         )

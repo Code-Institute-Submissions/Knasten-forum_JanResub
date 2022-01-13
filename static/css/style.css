@@ -3,11 +3,14 @@
     padding: 0;
 }
 
+html, body {
+    height: 100%;
+}
+
 body {
-    margin-top: 80px;
-    margin-bottom: 80px;
     background-color: whitesmoke;
 }
+
 .post-body {
     background-color: slategrey;
 }
@@ -34,4 +37,45 @@ body {
 .delete-form > input:hover {
     background-color: white;
     color: black;
+}
+
+.header-distance {
+    margin-top: 30px;
+}
+
+.main-wrapper {
+    min-height: 100%;
+}
+
+.inner-wrapper {
+    padding: 20px;
+    padding-bottom: 50px;
+}
+
+.footer {
+    height: 50px;
+    margin-top: -50px;
+}
+
+.navbar {
+    padding-right: 60px;
+    padding-left: 20px;
+}
+
+.nav-buttons > a {
+    font-weight: 500;
+    background-color: white;
+    border: black 3px solid;
+    color: black;
+}
+
+.nav-buttons > a:hover {
+    background-color: black;
+    color: white;
+    border: white 3px solid;
+}
+
+.dropdown-menu {
+    margin-right: 0;
+    margin-left: auto;
 }
