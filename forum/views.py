@@ -31,12 +31,17 @@ class PostList(View):
         queryset = Game.objects.all()
         game = get_object_or_404(queryset, name=name)
         posts = game.forum_posts.all()
+        likes = []
+        for post in posts:
+            if post.likes.filter(id=self.request.user.id).exists():
+                likes.append(post.id)
         return render(
             request,
             "postlist.html",
             {
                 'posts': posts,
                 'game': game,
+                'likes': likes,
             },
         )
 

@@ -14,8 +14,13 @@ body {
 .post-body {
     background-color: slategrey;
 }
+
 .red {
     color: red;
+}
+
+.black {
+    color: black;
 }
 
 .owned {

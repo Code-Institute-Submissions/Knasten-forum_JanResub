@@ -5,19 +5,20 @@
 <!-- Contains all the posts -->
 <div class="container">
   <div class="row align-items-start">
-    <div class="card mb-2 bg-dark text-white">
-      <div class="card-body p-2 p-sm-3">
         {% if user.is_authenticated %}
-        <a class="stretched-link" href="{% url 'add-post' game.name %}">
-          <p class="mb-1 d-inline text-white">Have anything to share? Feel free to click me.</p>
-        </a>
+        <div class="col-12 mb-3">
+          <a class="btn bg-dark text-white" href="{% url 'add-post' game.name %}">
+              Add a post
+          </a>
+        </div>
         {% else %}
-        <a class="stretched-link" href="{% url 'account_signup' %}">
-          <p class="mb-1 d-inline text-white">To post you need an account. Click here to register!</p>
-        </a>
+        <div class="col-12 mb-3">
+          <small class="text-muted">If you want to post something
+            <a class="text-link" href="{% url 'account_login' %}">login</a> or <a class="text-link" href="{% url 'account_signup' %}">register</a>
+            for a new account
+          </small>
+        </div>
         {% endif %}
-      </div>
-    </div>
     {% for post in posts %}
     <div class="card bg-dark text-white">
       <div class="card-body p-2 p-sm-3">
@@ -34,7 +35,13 @@
       </div>
         <form action="{% url 'post_like' post.id %}" method="POST" class="d-flex w-100 justify-content-end">
           {% csrf_token %}
-          <button type="submit" name="post_id" value="{{ post.id }}" class="btn text-white"><small>{{ post.likes.count }} <i class="fas fa-heart"></i></small></button>
+          <button type="submit" name="post_id" value="{{ post.id }}" class="btn text-white"><small>{{ post.likes.count }} 
+            {% if post.id in likes %}
+            <i class="fas fa-heart red"></i>
+            {% else %}
+            <i class="fas fa-heart black"></i>
+            {% endif %}
+          </small></button>
         </form>
       <div class="d-flex justify-content-end">
         <small>Posted on: {{ post.created_on }}</small>
