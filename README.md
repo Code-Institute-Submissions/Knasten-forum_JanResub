@@ -133,3 +133,7 @@ Used to customise input fields from user.
 Credit goes out to my mentor Richard Wells for all the awesome help during this project.
 
 And also to Stackoverflow for having some quick answers [Link to Stackoverflow](https://stackoverflow.com/)
+
+
+
+PROBLEMS: Footer not sticking to bottom on postview. This was caused by an div not being closed if comments hadn't been made on a post a user choose to view.

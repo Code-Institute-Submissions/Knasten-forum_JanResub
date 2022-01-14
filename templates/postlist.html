@@ -25,6 +25,7 @@
           <a class="text-decoration-none" href="{% url 'postview' post.id %}">
             <h5 class="card-title mt-2">{{ post.title }}</h5>
           </a>
+          <small class="">{{ post.comments.count }} <i class="fas fa-envelope"></i></small>
           <hr>
           {{ post.content|safe }}
           {% if user.id == post.author.id %}
