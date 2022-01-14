@@ -84,3 +84,13 @@ body {
     margin-right: 0;
     margin-left: auto;
 }
+
+.test-color {
+    background-color:rgba(32, 31, 30, 0.823);
+}
+
+.bot-left {
+    position: absolute;
+    left: 30px; /* Small screens will be 20px */
+    bottom: 0px;
+}

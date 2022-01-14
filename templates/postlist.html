@@ -20,20 +20,20 @@
         </div>
         {% endif %}
     {% for post in posts %}
-    <div class="card bg-dark text-white">
-      <div class="card-body p-2 p-sm-3">
-        <a href="{% url 'postview' post.id %}">
-          <h5 class="card-title mt-2">{{ post.title }}</h5>
-        </a>
-        <hr>
-        {{ post.content|safe }}
-        {% if user.id == post.author.id %}
-        <p class="owned d-inline-block">Posted By: {{ post.author }}</p>
-        {% else %}
-        <p>Posted By: {{ post.author }}</p>
-        {% endif %}
-      </div>
-        <form action="{% url 'post_like' post.id %}" method="POST" class="d-flex w-100 justify-content-end">
+    <div class="card test-color mb-3 text-white">
+        <div class="card-body p-2 p-sm-3">
+          <a class="text-decoration-none" href="{% url 'postview' post.id %}">
+            <h5 class="card-title mt-2">{{ post.title }}</h5>
+          </a>
+          <hr>
+          {{ post.content|safe }}
+          {% if user.id == post.author.id %}
+          <p class="d-inline-block bot-left small">Posted By: <strong>{{ post.author }}</strong></p>
+          {% else %}
+          <p class="d-inline-block bot-left small">Posted By: <em>{{ post.author }}</em></p>
+          {% endif %}
+        </div>
+        <form action="{% url 'post_like' post.id %}" method="POST" class="mb-2 d-flex w-100 justify-content-end">
           {% csrf_token %}
           <button type="submit" name="post_id" value="{{ post.id }}" class="btn text-white"><small>{{ post.likes.count }} 
             {% if post.id in likes %}
@@ -43,9 +43,6 @@
             {% endif %}
           </small></button>
         </form>
-      <div class="d-flex justify-content-end">
-        <small>Posted on: {{ post.created_on }}</small>
-      </div>
     </div>
     {% endfor %}
   </div>
