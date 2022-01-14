@@ -26,9 +26,7 @@
     <!-- Comments Section -->
     <h3>Comments: </h3>
     {% if not post.comments.all %}
-    <div class="container bg-dark text-white mt-4">
-        No Comments Yet...<a href="{% url 'add_comment' post.id %}">
-            Please Add One</a>
+        <p>Nothing here.. <a href="{% url 'add_comment' post.id %}">Add</a> a comment</p>
     </div>
     {% else %}
     {% for comment in post.comments.all %}
