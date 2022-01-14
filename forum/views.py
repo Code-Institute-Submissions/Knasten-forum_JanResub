@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import View, CreateView, ListView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
@@ -16,7 +16,7 @@ def LikeView(request, id):
     else:
         post.likes.add(request.user)
         liked = True
-    return HttpResponseRedirect(reverse('postview', args=[id]))
+    return redirect(request.META['HTTP_REFERER'])
 
 
 class GameList(ListView):
@@ -36,6 +36,7 @@ class PostList(View):
             "postlist.html",
             {
                 'posts': posts,
+                'game': game,
             },
         )
 
