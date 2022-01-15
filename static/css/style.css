@@ -121,3 +121,12 @@ body {
     color: white;
     border: black 2px solid;
 }
+
+.form-wrapper {
+    max-width: 100vw;
+    max-height: 100vh;
+}
+
+.shroud {
+    background-color: rgba(0, 0, 0, 0.3);
+}
