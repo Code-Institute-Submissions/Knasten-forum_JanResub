@@ -6,13 +6,13 @@
     <div class="card master-post mb-2">
         <div class="card-body p-2 p-sm-3">
             <h5 class="card-title mt-2">{{ post.title }}</h5>
-            <small class="text-muted">Main Post</small>
+            <small class="text-success">Main Post</small>
             {% if post.author_id == user.id %}
                 <a class="text-decoration-none text-danger ms-2" href="{% url 'delete_post' post.id %}"><i class="far fa-trash-alt"></i></a>
             {% endif %}
             <hr>
             {{ post.content|safe }}
-            <p>Posted By: {{ post.author }}</p>
+            <p class="bot-left-postview small">{{ post.author|capfirst }} posted</p>
         </div>
         <form action="{% url 'post_like' post.id %}" method="POST" class="d-flex w-100 justify-content-end">
             {% csrf_token %}
@@ -25,41 +25,36 @@
                 {% endif %}
             </small></button>
         </form>
-        <div class="d-flex justify-content-between">
-            <small class="ms-2 ms-sm-3">Posted on: {{ post.created_on|date:"SHORT_DATE_FORMAT" }}</small>
+        <div class="d-flex justify-content-end">
+            <small class="me-2 mb-1">{{ post.created_on|date:"SHORT_DATE_FORMAT" }}</small>
         </div>
     </div>
     <!-- Comments Section -->
-    <h3>Comments: </h3>
-    {% if not post.comments.all %}
-        <p>Nothing here.. <a href="{% url 'add_comment' post.id %}">Add</a> a comment</p>
+    <div class="row">
+        <div class="col">
+            <a href="{% url 'add_comment' post.id %}" class="comment-btn btn text-decoration-none mt-3">Comment</a>
+        </div>
+        <hr>
     </div>
+    {% if not post.comments.all %}
+        <p class="small mt-2">Nothing here.. Please leave a post</p>
     {% else %}
     {% for comment in post.comments.all %}
-    <div class="card mb-2 bg-dark text-white">
+    <div class="card mb-2 comment mt-3">
         <div class="card-body p-2 p-sm-3">
             {{ comment.content|safe }}
             {% if comment.author_id == user.id %}
-            <p class="owned">Comment By: {{ comment.author }}</p>
+            <p class="small bot-left-postview"><strong>{{ comment.author|capfirst }} commented</strong></p>
             {% else %}
-            <p>Comment By: {{ comment.author }}</p>
+            <p class="small bot-left-postview">{{ comment.author|capfirst }} commented</p>
             {% endif %}
         </div>
         <div class="d-flex justify-content-end">
-            <small>Commented on: {{ comment.created_on|date:"SHORT_DATE_FORMAT" }}</small>
-            {% if comment.author_id == user.id %}
-            <a href="{% url 'delete_comment' comment.id %}">delete</a>
-            {% endif %}
+            <small class="me-3 mb-2">{{ comment.created_on|date:"SHORT_DATE_FORMAT" }}</small>
         </div>
     </div>
     {% endfor %}
-    <div class="container bg-dark text-white mt-4">
-        <a class="" href="{% url 'add_comment' post.id %}">
-            <p class="mb-1 d-inline text-white">Have anything to share? Feel free to click me.</p>
-        </a>
-    </div>
-</div>
 
 {% endif %}
-
+</div>
 {% endblock content %}

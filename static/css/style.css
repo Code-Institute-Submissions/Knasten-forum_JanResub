@@ -91,8 +91,33 @@ body {
     bottom: 0px;
 }
 
+.bot-left-postview {
+    position: absolute;
+    left: 18px; /* Small screens will be 15px */
+    bottom: -5px;
+}
+
 .master-post {
     background-color: rgba(32, 31, 30, 0.323);
     color: black;
+    border: black 2px solid;
+}
+
+.comment-btn {
+    background-color: rgb(17, 17, 17);
+    color: #fff;
+    border: red 2px solid;
+    margin-bottom: 15px;
+}
+
+.comment-btn:hover {
+    background-color: rgba(17, 17, 17, 0.83);
+    border: greenyellow 2px solid;
+    color: #fff;
+}
+
+.comment {
+    background-color: #3f3f3f;
+    color: white;
     border: black 2px solid;
 }
