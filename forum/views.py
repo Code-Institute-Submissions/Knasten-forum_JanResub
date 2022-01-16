@@ -77,15 +77,21 @@ class Add_Post(LoginRequiredMixin, CreateView):
     model = Post
     form_class = AddPost
     template_name = 'add-post.html'
-
+    
     def get(self, request, *args, **kwargs):
-        game_name = request.META['HTTP_REFERER'].split('/')[3].replace('%20', ' ')
-        game_id = get_object_or_404(Game, name=game_name).id
-        form = self.form_class
-        context = {
-            'form': form,
-            'game_id': game_id,
-        }
+        if request.META.get('HTTP_REFERER'):
+            game_name = request.META.get('HTTP_REFERER').split('/')[3].replace('%20', ' ')
+            game_id = get_object_or_404(Game, name=game_name).id
+            form = self.form_class
+            context = {
+                'form': form,
+                'game_id': game_id,
+            }
+        else:
+            form = self.form_class
+            context = {
+                'form': form,
+            }
         return render(request, self.template_name, context)
 
     def get_success_url(self):
