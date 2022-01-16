@@ -2,7 +2,7 @@
 {% block content %}
 <div class="container d-flex justify-content-center">
     {% if user.is_authenticated %}
-    {% if user.id == comment.author_id or user.is_superuser %}
+    {% if user.id == comment.author.id or user.is_superuser %}
     <form method="post" class="delete-form">
         {% csrf_token %}
         <p>Are you sure you want to delete "{{ object.content|striptags }}"?</p>

@@ -16,7 +16,8 @@
 <!-- Script to populate hidden author field -->
 <script>
     var author_name = "{{ user.id }}";
-    document.getElementById("author-id").value = author_name;
+    var old_author = "{{ post.author.id }}"
+    document.getElementById("author-id").value = old_author;
 </script>
 {% else %}
     <p>Looks like you are not allowed to edit this post. Please login to the correct account to be able to edit. This post was written by {{ post.author }}</p>

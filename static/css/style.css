@@ -94,7 +94,7 @@ body {
 .bot-left-postview {
     position: absolute;
     left: 18px; /* Small screens will be 15px */
-    bottom: -5px;
+    bottom: 5px;
 }
 
 .master-post {
@@ -149,4 +149,8 @@ body {
 .size {
     width: auto !important;
     height: auto !important;
+}
+
+.comment-delete {
+    justify-content: end;
 }

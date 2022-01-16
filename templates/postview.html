@@ -52,7 +52,10 @@
             {% endif %}
         </div>
         <div class="d-flex justify-content-end">
-            <small class="me-3 mb-2">{{ comment.created_on|date:"SHORT_DATE_FORMAT" }}</small>
+            <small class="mb-2 me-3">{{ comment.created_on|date:"SHORT_DATE_FORMAT" }}</small>
+            {% if comment.author.id == user.id or user.is_superuser %}
+            <a class="me-3 text-decoration-none text-danger" href="{% url 'delete_comment' comment.id %}"><i class="far fa-trash-alt"></i></a>
+            {% endif %}
         </div>
     </div>
     {% endfor %}
