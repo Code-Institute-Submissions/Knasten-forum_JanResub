@@ -93,6 +93,7 @@ class Add_Comment(LoginRequiredMixin, CreateView):
 class Delete_Post(LoginRequiredMixin, DeleteView):
     model = Post
     template_name = 'post_confirm_delete.html'
+
     def get_success_url(self):
         return reverse('postlist', kwargs={'name': self.object.game})
 
@@ -100,5 +101,15 @@ class Delete_Post(LoginRequiredMixin, DeleteView):
 class Delete_Comment(LoginRequiredMixin, DeleteView):
     model = Comment
     template_name = 'comment_confirm_delete.html'
+
     def get_success_url(self):
         return reverse('postview', kwargs={'id': self.object.post_id})
+
+
+class Edit_Post(LoginRequiredMixin, UpdateView):
+    model = Post
+    form_class = AddPost
+    template_name = 'add-post.html'
+
+    def get_success_url(self):
+        return reverse('postview', kwargs={'id': self.object.id})

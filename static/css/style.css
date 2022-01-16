@@ -122,11 +122,31 @@ body {
     border: black 2px solid;
 }
 
-.form-wrapper {
-    max-width: 100vw;
-    max-height: 100vh;
-}
-
 .shroud {
     background-color: rgba(0, 0, 0, 0.3);
+}
+
+#id_content_iframe {
+    width: 40vw !important;
+    height: 50vh !important;
+}
+
+.summernote-div {
+    width: 40vw !important;
+    height: 50vh !important;
+}
+
+.note-editing-area > .note-editable {
+    width: 40vw !important;
+    height: 50vh !important;
+}
+
+.note-editor.note-frame.panel.panel-default {
+    width: auto !important;
+    height: auto !important;
+}
+
+.size {
+    width: auto !important;
+    height: auto !important;
 }

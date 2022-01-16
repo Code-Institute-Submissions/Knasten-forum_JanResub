@@ -137,3 +137,4 @@ And also to Stackoverflow for having some quick answers [Link to Stackoverflow](
 
 
 PROBLEMS: Footer not sticking to bottom on postview. This was caused by an div not being closed if comments hadn't been made on a post a user choose to view.
+
