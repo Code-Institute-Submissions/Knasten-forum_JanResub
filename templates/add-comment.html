@@ -3,11 +3,13 @@
 {% block content %}
 <!-- Add comment form -->
 <div class="d-flex justify-content-center">
-    <form method="POST" enctype="multipart/form-data" class="text-form">
-        {% csrf_token %}
-        {{ form.as_table }}
-        <button class="btn btn-secondary btn-lg">Comment</button>
-    </form>
+    <div>
+        <form method="POST" enctype="multipart/form-data" class="text-form">
+            {% csrf_token %}
+            {{ form.as_table }}
+            <button class="btn btn-secondary btn-lg">Comment</button>
+        </form>
+    </div>
 </div>
 <!-- Script to populate hidden fields -->
 <script>

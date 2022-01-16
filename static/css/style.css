@@ -127,16 +127,11 @@ body {
 }
 
 #id_content_iframe {
-    width: 40vw !important;
-    height: 50vh !important;
+    width: 100% !important;
+    height: 100% !important;
 }
 
 .summernote-div {
-    width: 40vw !important;
-    height: 50vh !important;
-}
-
-.note-editing-area > .note-editable {
     width: 40vw !important;
     height: 50vh !important;
 }
