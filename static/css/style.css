@@ -127,20 +127,30 @@ body {
 }
 
 #id_content_iframe {
-    width: 100% !important;
     height: 100% !important;
 }
 
 .summernote-div {
-    width: 40vw !important;
     height: 50vh !important;
 }
 
 .note-editor.note-frame.panel.panel-default {
-    width: auto !important;
-    height: auto !important;
+    width: 100% !important;
+    height: 100% !important;
 }
 
 .comment-delete {
     justify-content: end;
+}
+
+
+@media screen and (max-width: 841px) {
+    #id_content_iframe {
+        width: 100% !important;
+    }
+
+    .full-size {
+        height: 100%;
+        width: 95%;
+    }
 }

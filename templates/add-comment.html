@@ -3,7 +3,7 @@
 {% block content %}
 <!-- Add comment form -->
 <div class="d-flex justify-content-center">
-    <div>
+    <div class="full-size">
         <form method="POST" enctype="multipart/form-data" class="text-form">
             {% csrf_token %}
             {{ form.as_table }}
