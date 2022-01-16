@@ -11,10 +11,12 @@
         </form>
     </div>
 </div>
-<!-- Script to populate hidden author field -->
+<!-- Script to populate hidden author field, and game field. -->
 <script>
     var author_name = "{{ user.id }}";
     document.getElementById("author-id").value = author_name;
+    var game_id = "{{ game_id }}"
+    $('#game-id').val(game_id);
 </script>
 
 {% endblock content %}

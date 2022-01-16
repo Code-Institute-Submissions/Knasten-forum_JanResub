@@ -13,9 +13,6 @@
 <script>
     var author_name = "{{ user.id }}";
     document.getElementById("author-id").value = author_name;
-    const queryString = window.location.pathname;
-    let value = queryString.match(/\d+/g);
-    document.getElementById("post-id").value = parseFloat(value[0]); 
 </script>
 
 {% endblock content %}

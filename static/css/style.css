@@ -146,11 +146,6 @@ body {
     height: auto !important;
 }
 
-.size {
-    width: auto !important;
-    height: auto !important;
-}
-
 .comment-delete {
     justify-content: end;
 }

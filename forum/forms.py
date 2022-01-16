@@ -2,12 +2,11 @@ from .models import Post, Game, Comment
 from django import forms
 from django_summernote.widgets import SummernoteWidget
 
-games = Game.objects.all().values_list('name', flat=True)
-game_list = [game for game in games]
-
 
 class AddPost(forms.ModelForm):
     class Meta:
+        games = Game.objects.all().values_list('name', flat=True)
+        game_list = [game for game in games]
         model = Post
         fields = ('title', 'content', 'game', 'author')
 
