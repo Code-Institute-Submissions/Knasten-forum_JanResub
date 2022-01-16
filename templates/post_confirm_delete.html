@@ -2,7 +2,7 @@
 {% block content %}
 <div class="container d-flex justify-content-center">
     {% if user.is_authenticated %}
-    {% if user.id == post.author.id %}
+    {% if user.id == post.author.id or user.is_superuser %}
     <form method="post" class="delete-form">
         {% csrf_token %}
         <p>Are you sure you want to delete "{{ object }}"?</p>

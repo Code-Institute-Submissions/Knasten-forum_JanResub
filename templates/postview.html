@@ -7,7 +7,7 @@
         <div class="card-body p-2 p-sm-3">
             <h5 class="card-title mt-2">{{ post.title }}</h5>
             <small class="text-success">Main Post</small>
-            {% if post.author_id == user.id %}
+            {% if post.author_id == user.id or user.is_superuser %}
                 <a class="text-decoration-none text-danger ms-3" href="{% url 'delete_post' post.id %}"><i class="far fa-trash-alt"></i></a>
                 <p class="d-inline-block">|</p>
                 <a class="text-decoration-none" href="{% url 'edit_post' post.id %}">Edit</a>
