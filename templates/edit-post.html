@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% if user.is_authenticated %}
+{% if user.id == post.author_id or user.is_superuser %}
+<!-- Add post form -->
+<div class="d-flex justify-content-center">
+    <div class="form-group">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_table }}
+            <button class="btn btn-secondary btn-lg">Post</button>
+        </form>
+    </div>
+</div>
+<!-- Script to populate hidden author field -->
+<script>
+    var author_name = "{{ user.id }}";
+    document.getElementById("author-id").value = author_name;
+</script>
+{% else %}
+    <p>Looks like you are not allowed to edit this post. Please login to the correct account to be able to edit. This post was written by {{ post.author }}</p>
+{% endif %}
+{% else %}
+    <p><a href="{% url 'account_login' %}">Sign In</a> if you wish to edit-post.</p>
+{% endif %}
+
+{% endblock content %}

@@ -109,7 +109,7 @@ class Delete_Comment(LoginRequiredMixin, DeleteView):
 class Edit_Post(LoginRequiredMixin, UpdateView):
     model = Post
     form_class = AddPost
-    template_name = 'add-post.html'
+    template_name = 'edit-post.html'
 
     def get_success_url(self):
         return reverse('postview', kwargs={'id': self.object.id})
