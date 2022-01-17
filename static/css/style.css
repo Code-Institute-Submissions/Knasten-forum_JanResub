@@ -1,3 +1,4 @@
+/* --------------------- General Styles --------- */
 * {
     margin: 0;
     padding: 0;
@@ -11,17 +12,26 @@ body {
     background-color: whitesmoke;
 }
 
-.post-body {
-    background-color: slategrey;
+/* ------------------- Colors/Backgrounds ------- */
+.auth-bg {
+    background-color: rgba(0, 0, 0, 0.2);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    z-index: -999999;
 }
 
 .red {
     color: red;
 }
 
-.black {
-    color: black;
+.brown-bg {
+    background-color:rgba(32, 31, 30, 0.823);
 }
+
+/* ------------------ Delete Form ----------- */
 
 .delete-form {
     border: solid rgb(17, 17, 17) 3px;
@@ -40,10 +50,7 @@ body {
     color: black;
 }
 
-.header-distance {
-    margin-top: 30px;
-}
-
+/* ---------------- Sticky Footer Classes ------------------ */
 .main-wrapper {
     min-height: 100%;
 }
@@ -58,31 +65,15 @@ body {
     margin-top: -50px;
 }
 
+/* ------------------------ Navbar ------------ */
 .navbar {
-    padding-right: 60px;
+    padding-right: 30px;
     padding-left: 20px;
 }
 
-.nav-buttons > a {
-    font-weight: 500;
-    background-color: white;
-    border: black 3px solid;
-    color: black;
-}
-
-.nav-buttons > a:hover {
-    background-color: black;
-    color: white;
-    border: white 3px solid;
-}
-
-.dropdown-menu {
-    margin-right: 0;
-    margin-left: auto;
-}
-
-.test-color {
-    background-color:rgba(32, 31, 30, 0.823);
+/* --------------------- Post Styling --------------------  */
+.margin-bot {
+    margin-bottom: 15px;
 }
 
 .bot-left {
@@ -103,12 +94,7 @@ body {
     border: black 2px solid;
 }
 
-.comment-btn {
-    background-color: rgb(17, 17, 17);
-    color: #fff;
-    border: red 2px solid;
-    margin-bottom: 15px;
-}
+/* Comment */
 
 .comment-btn:hover {
     background-color: rgba(17, 17, 17, 0.83);
@@ -122,9 +108,11 @@ body {
     border: black 2px solid;
 }
 
-.shroud {
-    background-color: rgba(0, 0, 0, 0.3);
+.comment-delete {
+    justify-content: end;
 }
+
+/* ------------------------------- SummerNote Styling ------------------  */
 
 #id_content_iframe {
     height: 100% !important;
@@ -139,8 +127,13 @@ body {
     height: 100% !important;
 }
 
-.comment-delete {
-    justify-content: end;
+/*------------------- Buttons -------*/
+
+.comment-btn {
+    background-color: rgb(17, 17, 17);
+    color: #fff;
+    border: red 2px solid;
+    margin-bottom: 15px;
 }
 
 .btn-sign {
@@ -156,20 +149,20 @@ body {
     border: green 2px solid;
 }
 
-.bg {
-    background-color: rgba(0, 0, 0, 0.2);
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    height: 100vh;
-    width: 100vw;
-    z-index: -999999;
+.nav-buttons > a {
+    font-weight: 500;
+    background-color: white;
+    border: black 3px solid;
+    color: black;
 }
 
-.margin-bot {
-    margin-bottom: 15px;
+.nav-buttons > a:hover {
+    background-color: black;
+    color: white;
+    border: white 3px solid;
 }
 
+/* ----------------- Media Queries ---------------------- */
 
 @media screen and (max-width: 841px) {
     #id_content_iframe {
@@ -179,5 +172,15 @@ body {
     .full-size {
         height: 100%;
         width: 95%;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .bot-left {
+        left: 20px;
+    }
+    
+    .bot-left-postview {
+        left: 10px;
     }
 }
