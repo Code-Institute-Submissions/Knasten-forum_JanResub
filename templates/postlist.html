@@ -36,7 +36,11 @@
         </div>
         <form action="{% url 'post_like' post.id %}" method="POST" class="mb-2 d-flex w-100 justify-content-end">
           {% csrf_token %}
-          <button type="submit" name="post_id" value="{{ post.id }}" class="btn margin-bot text-white"><small>{{ post.likes.count }} 
+          {% if user.is_authenticated %}
+          <button type="submit" name="post_id" value="{{ post.id }}" class="btn margin-bot text-white"><small>{{ post.likes.count }}
+          {% else %}
+          <button type="submit" name="post_id" value="{{ post.id }}" class="btn margin-bot text-white" disabled><small>{{ post.likes.count }}
+          {% endif %}
             {% if post.id in likes %}
             <i class="fas fa-heart red"></i>
             {% else %}

@@ -9,7 +9,6 @@ from .models import Game, Post, Comment
 from django.urls import reverse_lazy, reverse
 
 
-@login_required
 def LikeView(request, id):
     post = get_object_or_404(Post, id=request.POST.get('post_id'))
     liked = False
@@ -20,8 +19,6 @@ def LikeView(request, id):
         else:
             post.likes.add(request.user)
             liked = True
-        return redirect(request.META['HTTP_REFERER'])
-    else:
         return redirect(request.META['HTTP_REFERER'])
 
 
