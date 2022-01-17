@@ -4,6 +4,7 @@ from .models import Post, Comment, Game
 
 # Register your models here.
 
+
 class SummerAdmin(SummernoteModelAdmin):
     summernote_fields = ('content')
 

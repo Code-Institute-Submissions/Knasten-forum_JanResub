@@ -15,12 +15,15 @@ class Game(models.Model):
 
 
 class Post(models.Model):
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='post')
+    author = models.ForeignKey(User, on_delete=models.CASCADE,
+                               related_name='post')
     title = models.CharField(max_length=300, unique=True)
     content = models.TextField()
-    likes = models.ManyToManyField(User, related_name='forumpost_likes', blank=True)
+    likes = models.ManyToManyField(User, related_name='forumpost_likes',
+                                   blank=True)
     created_on = models.DateTimeField(auto_now_add=True)
-    game = models.ForeignKey(Game, on_delete=models.CASCADE, related_name='forum_posts')
+    game = models.ForeignKey(Game, on_delete=models.CASCADE,
+                             related_name='forum_posts')
 
     class Meta:
         ordering = ['-created_on']
@@ -33,10 +36,13 @@ class Post(models.Model):
 
 
 class Comment(models.Model):
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comments')
-    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
+    author = models.ForeignKey(User, on_delete=models.CASCADE,
+                               related_name='comments')
+    post = models.ForeignKey(Post, on_delete=models.CASCADE,
+                             related_name='comments')
     content = models.TextField()
-    likes = models.ManyToManyField(User, related_name='postcomment_likes', blank=True)
+    likes = models.ManyToManyField(User, related_name='postcomment_likes',
+                                   blank=True)
     created_on = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

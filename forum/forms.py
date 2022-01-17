@@ -31,7 +31,6 @@ class AddPost(forms.ModelForm):
                 'type': 'hidden',
 
             })
-          
         }
 
 

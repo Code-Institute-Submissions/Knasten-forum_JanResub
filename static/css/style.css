@@ -166,6 +166,10 @@ body {
     z-index: -999999;
 }
 
+.margin-bot {
+    margin-bottom: 15px;
+}
+
 
 @media screen and (max-width: 841px) {
     #id_content_iframe {

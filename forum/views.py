@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.views.generic import View, CreateView, ListView, UpdateView, DeleteView
+from django.views.generic import View, CreateView, ListView
+from django.views.generic import UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
@@ -61,7 +62,6 @@ class PostView(View):
         liked = False
         if post.likes.filter(id=self.request.user.id).exists():
             liked = True
-            
         return render(
             request,
             "postview.html",
@@ -77,10 +77,11 @@ class Add_Post(LoginRequiredMixin, CreateView):
     model = Post
     form_class = AddPost
     template_name = 'add-post.html'
-    
+
     def get(self, request, *args, **kwargs):
         if request.META.get('HTTP_REFERER'):
-            game_name = request.META.get('HTTP_REFERER').split('/')[3].replace('%20', ' ')
+            game_name = request.META.get('HTTP_REFERER').split('/')[3].replace(
+                                                                    '%20', ' ')
             game_id = get_object_or_404(Game, name=game_name).id
             form = self.form_class
             context = {
@@ -96,7 +97,6 @@ class Add_Post(LoginRequiredMixin, CreateView):
 
     def get_success_url(self):
         return reverse('postview', kwargs={'id': self.object.id})
-
 
 
 class Add_Comment(LoginRequiredMixin, CreateView):

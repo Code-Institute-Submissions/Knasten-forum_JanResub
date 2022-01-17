@@ -23,12 +23,12 @@
 
   <div class="nav-buttons d-none d-lg-block">
     {% if user.is_authenticated %}
-      <a class="btn" type="button" href="{% url 'home' %}">Home</a>
-      <a class="btn" type="button" href="{% url 'account_logout' %}">Logout</a>
+      <a class="btn" href="{% url 'home' %}">Home</a>
+      <a class="btn" href="{% url 'account_logout' %}">Logout</a>
     {% else %}
-      <a class="btn" type="button" href="{% url 'home' %}">Home</a>
-      <a class="btn" type="button" href="{% url 'account_login' %}">Login</a>
-      <a class="btn" type="button" href="{% url 'account_signup' %}">Register</a>
+      <a class="btn" href="{% url 'home' %}">Home</a>
+      <a class="btn" href="{% url 'account_login' %}">Login</a>
+      <a class="btn" href="{% url 'account_signup' %}">Register</a>
     {% endif %}
   </div>
 
@@ -54,7 +54,7 @@
   <!-- Collapsible content only visible on medium and smaller -->
   <div class="collapse navbar-collapse d-lg-none" id="navbarSupportedContent1">
 
-      <!-- Links -->
+    <!-- Links -->
       <ul class="navbar-nav mr-auto">
         {% if user.is_authenticated %}
             <li class="nav-item active">
@@ -74,33 +74,34 @@
             <a class="nav-link text-white" href="{% url 'account_signup' %}">Register</a>
         </li>
         {% endif %}
-              <!-- DropDown -->
-              <div class="dropdown">
-                  <button class="btn text-white p-0 dropdown-toggle" type="button" id="dropdownMenuButton"
-                      data-bs-toggle="dropdown" aria-expanded="false">
-                      Games
-                  </button>
-                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                      {% for game in game_list %}
-                          <a class="dropdown-item" href="{% url 'postlist' game.name %}">{{ game.name }}</a>
-                      {% endfor %}
-                  </div>
-              </div>
-              <!-- DropDown /-->
-          </li>
       </ul>
-      <!-- Links -->
+      <!-- DropDown -->
+      <div class="dropdown">
+          <button class="btn text-white p-0 dropdown-toggle" type="button" id="dropdownMenuButton2"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              Games
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+              {% for game in game_list %}
+                  <a class="dropdown-item" href="{% url 'postlist' game.name %}">{{ game.name }}</a>
+              {% endfor %}
+          </div>
+      </div>
+      <!-- DropDown /-->
+    <!-- Links /-->
 
   </div>
   <!-- Collapsible content /-->
 </nav>
 <!-- Navbar /-->
+<!-- Main Content -->
 <div class="main-wrapper">
   <div class="inner-wrapper">
       {% block content %}
       {% endblock content %}
   </div>
 </div>
+<!-- Main Content /-->
 <footer>
   <!-- Footer Content -->
  <div class="navbar bg-dark text-white footer">
@@ -110,50 +111,5 @@
  </div>
   <!-- Footer Content /-->
 </footer>
-<!-- ------------------------------------------------------------------------------------------------------- COPY/DELETE -->
-    <!-- Navbar -->
-    <!-- <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <div class="container-fluid">
-          {% if user.is_authenticated %}
-          <div class="ms-3">
-            <a class="navbar-brand" href="{% url 'home' %}">Home</a>
-            <a class="navbar-brand" href="{% url 'account_logout' %}">Logout</a>
-          </div>
-          {% else %}
-          <div>
-            <a class="navbar-brand" href="{% url 'home' %}">Home</a>
-            <a class="navbar-brand" href="{% url 'account_login' %}">Login</a>
-            <a class="navbar-brand" href="{% url 'account_signup' %}">Register</a>
-          </div>
-          <a class="navbar-brand" href="{% url 'account_signup' %}">
-            <p class="mb-1 d-inline text-white btn btn-secondary">Sign up to post!</p>
-          </a>
-          {% endif %}
-          <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-              Game Forums
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              {% for game in game_list %}
-              <li><a class="dropdown-item" href="{% url 'postlist' game.name %}">{{ game.name }}</a></li>
-              {% endfor %}
-            </ul>
-          </div>
-        </div>
-      </nav> -->
-    <!-- Navbar /-->
-    <!-- Content -->
-    <!-- Content /-->
-    <!-- Footer -->
-    <!-- <footer class="footer fixed-bottom mt-auto py-3 bg-dark ">
-      <div class="d-flex justify-content-around">
-          <small class="text-white">©2021 KNASTEN</small>
-          <div>
-            <a href="https://github.com/Knasten" target="_blank" rel="noopener"><i class="fab fa-github fa-2x"></i></a>
-            <a href="https://www.twitch.tv/knastengaming" target="_blank" rel="noopener"><i class="fab fa-twitch fa-2x"></i></a>
-          </div>
-        </div>
-    </footer> -->
-    <!-- Footer /-->
 </body>
 </html>
