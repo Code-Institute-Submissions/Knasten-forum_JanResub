@@ -5,16 +5,16 @@
 
 # Content
 
-1. Introduction
-2. User experience (UX)
-3. Colors
-4. The page
-5. User stories
-6. Testing
-7. Deploying to Heroku
-8. Validation
-9. Tech used
-10. Credits
+1. [Introduction](#introduction)
+2. [Design](#design)
+3. [Data Structure](#data-structure)
+4. [Wireframes](#wireframes)
+5. [User Stories](#user-stories)
+6. [Testing](#testing)
+7. [Deployment](#deployment)
+8. [Validation](#validation)
+9. [Tech](#tech)
+10. [Credits](#credits)
 
 
 
@@ -22,36 +22,21 @@
 I choose to do this cause gaming has been a hobby of mine since I was just a little kid.
 So I wanted to make a place where gamers could gather round and chat/post about their favorite parts.
 
-# User experience (UX)
+# Design
+I choose to go with some darker colors but with alot of white around. And the colors I choose is choosen to contrast each other making sure there is high visibility. Then in some places around all theese dark brooding boring colors you will find some splashes of color. All designed to make certain functions pop out to the user.
+Aswell as when a user is looking at post if he sees one he has created it will say the author name in bold. This was thoughtfully made to make sure you don't have to search for your post.
 
-In this picture you can see the original post at the top and then the comments stacks underneath:
-![picture of comment page](media/images/postview.png)
+# Data Structure
+![Picture of data-structure](readme/images/data-structure.jpeg)
 
-In this picture you can the different game choices:
-![picture of landingpage](media/images/index.png)
-
-In this picture you can see the comment creation page:
-![picture of create comment page](media/images/createcomment.png)
-
-In this picture you can see the post creation page:
-![picture of create post page](media/images/createpost.png)
-
-This is the registration page, and it does not require a e-mail to sign-up:
-![picture of registration page](media/images/signup.png)
-
-This is the logout page:
-![picture of logout page](media/images/signout.png)
-
-This is the login page:
-![picture of login page](media/images/signin.png)
-
-As you can see from the pictures above, registration is easy and dosen't require any mail to signup.
-Even if you do not sign up you are able to view post made by other users you will not be able to like or comment however.
-Besides from that there is not much to say everything is self explanatory.
-
-# Colors
-As can be seen in the pictures above, I have chosen to go with a darker theme website. 
-I have chosen this beacuse, me myself when I am reading on internet finds it less straining on the eyes with darker backgrounds.
+# Wireframes
+When looking at these wireframes you can see it isn't made identical to what the plan was.
+This is partially because I did not have the time to fix the profile page and profile model like I would want to.
+So the profile page has not been created yet but, I reckoned I might aswell show you a little something of how I plan for it to look.
+1. [Landing Page](readme/images/landing_page.jpeg)
+2. [Profile Page](readme/images/profile_page.jpeg)
+3. [Current Post Page](readme/images/currentpost_page.jpeg)
+4. [All Posts Page](readme/images/allposts_page.jpeg)
 
 # User Stories
 My sole purpose of this site was to build something to share ideas and knowledge about the games we love.
@@ -149,10 +134,74 @@ The toolbar at the top does not scale well so you get an horizontal scroll insid
 * **Problem:** Trying to access add-post page from the homepage throws an error.
 * **Cause:** It couldn't find the HTTP_REFFERER since there is none when trying to access it this way.
 * **Solution:** Added an if statement to check if HTTP_REFFERER exists in add-post and if it doesn't it hops over the code for prepoulating game field.
+<hr>
+
+* **Problem:** When trying to like a page while not logged in, it sends you to login, but after you login it throws error.
+* **Cause:** It is because it can not find the post without the id it gets from the request when clicking like.
+* **Solution:** Disabled the like buttons for non logged in users instead.
 
 # Unresolved Issues
 
 The only known issue for me right now is summernote, it still does not look good but it is functional. At a later time I would like to see if there is, any other text editor more suited for phones. If there is one to be used it would make the phone use much easier and hopefully it would look neater aswell.
+
+# Deployment
+
+## Deployment Requirements
+- [Cloudinary](https://cloudinary.com/homepage-ai-capabilities) account to store static files.
+- [Github](https://github.com/)
+- [Heroku](https://dashboard.heroku.com/)
+
+## Deployment Steps
+
+### Setting Up Repository
+1. Get link to copy my [repository](https://github.com/Knasten/forum). You can do this by clicking the green "code" button and then copy the HTTPS link.
+
+2. Start up your own repository and enter bash command "git clone {link you copied}". Now you have copied everything and the settings can start.
+
+3. Add an env.py file to root directory. If you are setting up for deployment with heroku check out step 4 in Deployment to heroku, if you need help finding your DATABASE_URL. In this file you will add:
+```bash
+import os
+
+os.environ["SECRET_KEY"] = "[Your Secret Key]"
+os.environ["DATABASE_URL"] = "[Your DB URL]"
+os.environ["CLOUDINARY_URL"] = "[Your CLOUDINARY URL]"
+```
+
+4. Run this command to install everything in requirements.txt
+```bash
+pip3 install -r requirements.txt
+```
+
+### Setting Up Your DB / Creating superuser
+1. To setup the database you must run the following command
+```bash
+python3 manage.py migrate
+```
+2. Then create your super user by typing this command
+```bash
+python3 manage.py createsuperuser
+```
+3. Start the server by running this command
+```bash
+python3 manage.py runserver
+```
+4. You should now have gotten a message if you want to browse your server. If you click this it should be working. Though since it is your own database it won't be populated with anything until you fill it up.
+
+### Deploying to Heroku
+If you want to run this is an online environment I recommend trying heroku. Before trying this make sure you have followed the steps prior to this.
+1. Either create an account or log in at [Heroku](https://dashboard.heroku.com/)
+2. Set up a new app with a unique name in your region.
+3. Locate resource tab and in addons field search for "postgres" and select free option
+
+4. Locate your settings for app and reveal your config vars. Here you will find your DATABASE_URL this should be copied in to your env.py file so if you are running locally you will still be accessing the same database.
+5. While you are at the config vars also add:
+´´´bash
+CLOUDINARY_URL : {Your Cloudinary Url}
+SECRET_KEY : {Your Secret Key}
+´´´
+6. In heroku dasboard select deploy tab
+7. Select deploy from github you can also enable auto deploy for future push
+8. You can now follow the deployment in the window and when it is done you click "open app" at the top.
 
 # Validation
 * To validate my python files I ran them all through [PEP8 Online Check](http://pep8online.com/)
@@ -173,46 +222,37 @@ And everything turned out all right except for summernotes widget which has alot
 This can be seen in picture number 3 all theese faults origins from summernote widget.
 
 ### HTML Validations Images and Links ####
-1. ![CSS Validation](readme/images/css_validation.png)
-2. ![Landing Page Validation](readme/images/landing_page_validation.png)
-3. ![Summernote Errors](readme/images/summernote_errors.png)
+1. [CSS Validation](readme/images/css_validation.png)
+2. [Landing Page Validation](readme/images/landing_page_validation.png)
+3. [Summernote Errors](readme/images/summernote_errors.png)
 4. [Login Validation](readme/images/login_validation.png)
 5. [Logout Validation](readme/images/logout_validation.png)
 6. [Post Detail Validation](readme/images/post_detail_validation.png)
 7. [Post List Validation](readme/images/postlist_validation.png)
 8. [Register Validation](readme/images/register_validation.png)
 
-# Tech used
+# Tech Used
 
-Main parts of the site is HTML5 and CSS3.
+### Languages
+- HTML
+- CSS
+- Javascript
+- [Python](https://www.python.org/)
 
-- [GitHub](https://www.github.com)
-Storing my files while working.
-    
-- [Gitpod](https://www.gitpod.io)
-Platform on which I write the code.
-    
-- [FontAwesome](https://fontawesome.com)
-From here I have imported some icons to improve site design.
-     
-- [PEP8 Validation](http://pep8online.com/)
-CSS jigsaw validator.
-    
-- [Heroku](https://heroku.com/)
-For deployment of the site and application.
-        
+### Frameworks
 - [Django](https://www.djangoproject.com/)
-Framework used to build the site and application.
+- [Bootstrap](https://getbootstrap.com/)
 
-- [SummerNotes](https://summernote.org/)
-Used to customise input fields from user.
+### Libraries
+- [Jquery](https://jquery.com/)
+
+### Tools
+- [Cloudinary](https://cloudinary.com/homepage-ai-capabilities)
+- [Heroku](https://dashboard.heroku.com/apps)
+- [Postgres](https://landing.aiven.io/en/aiven-for-postgresql/?gclid=Cj0KCQiAoY-PBhCNARIsABcz7718vMAf8vQ-EwksGq3BwF7ZqbVdE4MEKDHxc3eg_mhQncDbyq-vBGAaAoJKEALw_wcB)
 
 # Credit
 Credit goes out to my mentor Richard Wells for all the awesome help during this project.
 
 And also to Stackoverflow for having some quick answers [Link to Stackoverflow](https://stackoverflow.com/)
-
-
-
-PROBLEMS: Footer not sticking to bottom on postview. This was caused by an div not being closed if comments hadn't been made on a post a user choose to view.
 
